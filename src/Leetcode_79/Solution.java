@@ -38,24 +38,26 @@ public class Solution {
 	}
 	
 	private boolean dfs(char[][] board,boolean[][] visited,String word,int i,int j){
-		boolean result = false;
 		if(word.length()==0){
-			result = true;
-			return result;
+			return true;
 		}
 		if(i<0||i>board.length-1||j<0||j>board[0].length-1){
-			result = false;
-			return result;
+			return false;
 		}
-		if(visited[i][j]==false&&board[i][j]==word.charAt(0)){
-			visited[i][j] = true;
-			word = word.substring(1);
-			result = dfs(board, visited, word, i-1, j) |
-					dfs(board, visited, word, i+1, j) |
-					dfs(board, visited, word, i, j-1) |
-					dfs(board, visited, word, i, j+1);
-			visited[i][j] = false;
+		if(visited[i][j]==true){
+			return false;
 		}
+		if(board[i][j]!=word.charAt(0)){
+			return false;
+		}
+			
+		visited[i][j] = true;
+		word = word.substring(1);
+		boolean result = dfs(board, visited, word, i-1, j) |
+				dfs(board, visited, word, i+1, j) |
+				dfs(board, visited, word, i, j-1) |
+				dfs(board, visited, word, i, j+1);
+		visited[i][j] = false;
 		return result;
 	}
 }
