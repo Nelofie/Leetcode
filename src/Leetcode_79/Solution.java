@@ -53,9 +53,9 @@ public class Solution {
 			
 		visited[i][j] = true;
 		word = word.substring(1);
-		boolean result = dfs(board, visited, word, i-1, j) |
-				dfs(board, visited, word, i+1, j) |
-				dfs(board, visited, word, i, j-1) |
+		boolean result = dfs(board, visited, word, i-1, j) ||
+				dfs(board, visited, word, i+1, j) ||
+				dfs(board, visited, word, i, j-1) ||
 				dfs(board, visited, word, i, j+1);
 		visited[i][j] = false;
 		return result;
